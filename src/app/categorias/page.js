@@ -2,12 +2,7 @@ import NavBar from '@/components/NavBar'
 import CategoryRow from '@/components/CategoryRow'
 import Button from '@/components/Button'
 import { PlusIcon } from '@heroicons/react/24/outline'
-
-async function getCategories() {
-  const url = 'http://localhost:8080/api/v1/categories'
-  const resp = await fetch(url, { next: { revalidate: 0 } })
-  return resp.json()
-}
+import { getCategories } from '@/actions/categorias'
 
 export default async function Categorias() {
   const categories = await getCategories()
