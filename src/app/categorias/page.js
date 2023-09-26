@@ -16,7 +16,7 @@ export default async function Categorias() {
           <h2 className="text-slate-100 text-2xl">Categorias</h2>
           <Button href="/categorias/new">
             <PlusIcon className="h-6 w-6" />
-            criar conta
+            Criar categoria
           </Button>
         </div>
         <div id="data">

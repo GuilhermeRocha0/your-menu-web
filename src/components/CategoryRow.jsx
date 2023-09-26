@@ -11,7 +11,7 @@ export default function CategoryRow({ data }) {
       </div>
       <div className="flex items-center">
         <div className="invisible group-hover:visible">
-          <DropMenu />
+          <DropMenu categoriaId={data.id} />
         </div>
       </div>
     </div>
