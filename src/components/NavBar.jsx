@@ -1,6 +1,20 @@
-import Link from 'next/link'
+'use client'
 
-export default function NavBar({ active, logged }) {
+import { AuthContext } from '@/contexts/AuthContext'
+import Link from 'next/link'
+import { useContext } from 'react'
+import Button from './Button'
+import { useRouter } from 'next/navigation'
+
+export default function NavBar({ active }) {
+  const { user, logout } = useContext(AuthContext)
+  const { push } = useRouter()
+
+  function handleLogout() {
+    logout()
+    push('/login')
+  }
+
   return active != 'home' ? (
     <nav className="flex justify-between items-center bg-slate-800 px-4 py-2">
       <ul id="links" className="flex items-end gap-14 text-slate-500">
@@ -14,21 +28,25 @@ export default function NavBar({ active, logged }) {
             className={active == 'categorias' && 'text-slate-300'}
             href="/categorias"
           >
-            categorias
+            Categorias
           </Link>
         </li>
         <li>
           <Link className={active == 'itens' && 'text-slate-300'} href="/itens">
-            itens
+            Itens
           </Link>
         </li>
       </ul>
 
-      <input
-        className="text-slate-300 rounded-lg border-2 border-slate-300 px-4 py-2 hover:bg-rose-500 hover:border-transparent hover:text-slate-100"
-        type="button"
-        value="Log Out"
-      />
+      <div className="flex items-center gap-2">
+        <span>{user?.email}</span>
+        <div className="h-12 w-12 rounded-full overflow-hidden">
+          <img src="https://i.pravatar.cc/100" alt="avatar do usuário" />
+        </div>
+        <Button onClick={handleLogout} type="button" variant="secondary">
+          Log Out
+        </Button>
+      </div>
     </nav>
   ) : (
     <nav className="flex justify-between items-center bg-slate-800 px-4 py-2">
@@ -38,17 +56,17 @@ export default function NavBar({ active, logged }) {
       <ul id="links" className="flex items-end gap-14 text-slate-500">
         <li>
           <a className="" href="#">
-            categoria 1
+            Categoria 1
           </a>
         </li>
         <li>
           <a className="" href="#">
-            categoria 2
+            Categoria 2
           </a>
         </li>
         <li>
           <a className="" href="#">
-            categoria 3
+            Categoria 3
           </a>
         </li>
       </ul>

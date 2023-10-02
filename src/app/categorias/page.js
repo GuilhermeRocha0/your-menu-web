@@ -20,7 +20,7 @@ export default async function Categorias() {
           </Button>
         </div>
         <div id="data">
-          {categories.map(category => (
+          {categories?.map(category => (
             <CategoryRow key={category.id} data={category} />
           ))}
         </div>
